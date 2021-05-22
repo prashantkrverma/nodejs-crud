@@ -1,3 +1,4 @@
+require('dotenv').config()
 const APP = require('express')()
 const CORS = require('cors')
 require('./common').middleware(APP)
