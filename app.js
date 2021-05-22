@@ -1,5 +1,4 @@
 const APP = require('express')()
-require('dotenv').config()
 const CORS = require('cors')
 require('./common').middleware(APP)
 const { mongoose } = require("./config")
