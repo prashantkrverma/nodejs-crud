@@ -24,11 +24,7 @@ const People = new mongoose.Schema({
     maxlength: 10,
     unique: true,
     required: true
-  },
-  avatar: { 
-      type: String,
-      default: "" 
-    }
+  }
 });
 
 module.exports = mongoose.model("people", People);
