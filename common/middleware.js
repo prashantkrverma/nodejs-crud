@@ -43,5 +43,5 @@ module.exports = APP => {
 
      // Swagger API UI
      APP
-     .use("/api", swagger.serve, swagger.setup((require('./docs.api'))))
+     .use("/api-docs", swagger.serve, swagger.setup((require('./docs.api'))))
 }
