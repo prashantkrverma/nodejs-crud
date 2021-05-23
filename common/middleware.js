@@ -1,4 +1,5 @@
 const express = require('express')
+const swagger = require('swagger-ui-express')
 
 module.exports = APP => {
     if (APP) console.log('Middleware checked')
@@ -39,4 +40,8 @@ module.exports = APP => {
         }
         next();
     });
+
+     // Swagger API UI
+     APP
+     .use("/api", swagger.serve, swagger.setup((require('./docs.api'))))
 }

@@ -1,0 +1,266 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "NodeJS CRUP App",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "description": "Production Server",
+            "url": "https://simple-nodejs-crud.herokuapp.com/"
+        },
+        {
+            "description": "Local Dev server",
+            "url": "http://localhost:5000"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "people": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "fName": {
+                        "type": "string",
+                        "description": "First Name"
+                    },
+                    "lName": {
+                        "type": "string",
+                        "description": "Last Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Unique"
+                    },
+                    "phone": {
+                        "type": "integer",
+                        "description": "Unique"
+                    }
+                },
+                "required": [
+                    "email",
+                    "fName",
+                    "phone"
+                ]
+            }
+        }
+    },
+    "paths": {
+        "/api/people": {
+            "post": {
+                "summary": "Register user",
+                "description": "Register new user",
+                "parameters": [],
+                "requestBody": {
+                    "description": "Register user to the system",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/people"
+                            },
+                            "examples": {
+                                "User": {
+                                    "value": {
+                                        "fName": "string",
+                                        "lName": "string",
+                                        "email": "string",
+                                        "phone": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The transaction has been correctly made in the system",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "title": "Successfully registered.",
+                                        "description": "User registered successfully."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "The transaction failed due to invalid entry",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "error",
+                                    "data": {
+                                        "title": "Invalid Data",
+                                        "description": "Error Details"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "To get all registered users",
+                "description": "To get all registered users in our system",
+                "responses": {
+                    "200": {
+                        "description": "The transaction has been correctly made in the system",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "title": "People List",
+                                        "description": "All People list from the collection",
+                                        "property": [
+                                            {
+                                                "_id": "string",
+                                                "fName": "string",
+                                                "lName": "string",
+                                                "email": "string",
+                                                "phone": "number"
+                                            },
+                                            {
+                                                "_id": "string",
+                                                "fName": "string",
+                                                "lName": "string",
+                                                "email": "string",
+                                                "phone": "number"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/people/{user_id}": {
+            "put": {
+                "summary": "Update users details",
+                "description": "Update users details",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update user's details to the system",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/people"
+                            },
+                            "examples": {
+                                "User": {
+                                    "value": {
+                                        "fName": "string",
+                                        "lName": "string",
+                                        "email": "string",
+                                        "phone": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The transaction has been correctly made in the system",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "title": "Successfully updated.",
+                                        "description": "User is successfully updated details"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "To get details of user by Id",
+                "description": "To get all details of user by Id from our system",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The transaction has been correctly made in the system",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "title": "User Details",
+                                        "description": "All details of a user by Id",
+                                        "property": {
+                                            "_id": "string",
+                                            "fName": "string",
+                                            "lName": "string",
+                                            "email": "string",
+                                            "phone": "number"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/remove/{user_id}": {
+            "delete": {
+                "summary": "Delete user",
+                "description": "Delete user from server",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "user_id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The transaction has been correctly made in the system",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "title": "Successfully deleted.",
+                                        "description": "User is Successfully deleted."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
