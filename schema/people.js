@@ -14,7 +14,7 @@ const People = new mongoose.Schema({
   email: {
     type: String,
     minlength: 5,
-    validate: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+    validate: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/,
     required: true,
     unique: true,
   },
