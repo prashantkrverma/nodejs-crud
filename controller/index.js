@@ -133,7 +133,7 @@ module.exports = APP => {
                         description: `User is successfully deleted.`
                     }
                 });
-            res
+            else res
                 .status(404)
                 .send({
                     status: "fail",
