@@ -32,7 +32,7 @@ module.exports = APP => {
         })
     })
     APP.get('/api/people', (req, res) => {
-        People.find({}, (err, result) => {
+        People.find({},["_id", "fName", "lName", "phone", "email"], (err, result) => {
             if (err) res
                 .status(400)
                 .send({
