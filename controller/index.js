@@ -7,10 +7,9 @@ module.exports = APP => {
             fName,
             lName,
             phone,
-            email,
-            avatar
+            email
         } = req.body
-        People.create({ fName, lName, phone, email, avatar }, (err, result) => {
+        People.create({ fName, lName, phone, email }, (err, result) => {
             if (err) res
                 .status(400)
                 .send({
@@ -91,10 +90,9 @@ module.exports = APP => {
             fName,
             lName,
             phone,
-            email,
-            avatar
+            email
         } = req.body
-        People.findByIdAndUpdate({ _id: req.params.user_id }, { fName, lName, phone, email, avatar }, (err, result) => {
+        People.findByIdAndUpdate({ _id: req.params.user_id }, { fName, lName, phone, email }, (err, result) => {
             if (err) res
                 .status(400)
                 .send({
